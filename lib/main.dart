@@ -7,7 +7,8 @@ import 'app/routes/app_pages.dart';
 void main() {
   runApp(
     GetMaterialApp(
-      title: "Application",
+      debugShowCheckedModeBanner: false,
+      title: "K24 Test",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
