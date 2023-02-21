@@ -2,20 +2,21 @@ name: k24
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=2.19.2 <3.0.0'
 
-dependencies: 
+dependencies:
+  animations: ^2.0.7
   cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
   get: 4.6.5
-  flutter: 
-    sdk: flutter
+  lottie: ^2.2.0
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
-
