@@ -6,10 +6,9 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       // ignore: prefer_const_constructors
       decoration: BoxDecoration(
@@ -71,7 +70,7 @@ class LoginView extends GetView<LoginController> {
                       cursorColor: Colors.black,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
-                        labelText: "Email",
+                        labelText: "Username",
                         labelStyle:
                             const TextStyle(color: Colors.black, fontSize: 16),
                         focusedBorder: OutlineInputBorder(

@@ -13,9 +13,6 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
-import '../modules/viewmember/bindings/viewmember_binding.dart';
-import '../modules/viewmember/views/viewmember_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -46,12 +43,6 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
-    ),
-    GetPage(
-      transition: Transition.fadeIn,
-      name: _Paths.VIEWMEMBER,
-      page: () => ViewmemberView(),
-      binding: ViewmemberBinding(),
     ),
     GetPage(
       transition: Transition.fadeIn,

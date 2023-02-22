@@ -1,17 +1,19 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../controllers/page_index_controller_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  GetStorage box = GetStorage();
   final pageC = Get.find<PageIndexController>();
   final String id = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-    controller.idUser.value = id;
+    controller.getUser(id);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -29,36 +31,46 @@ class HomeView extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.grey[200],
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Selamat Datang...",
-                      style: TextStyle(fontSize: 18, color: Colors.grey)),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: GetBuilder<HomeController>(
+                init: HomeController(),
+                initState: (_) {},
+                builder: (c) {
+                  if (c.userData == null) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${controller.userData[0]['Nama']}",
-                          style: const TextStyle(
-                              fontSize: 26, fontWeight: FontWeight.bold)),
-                      Text("${controller.userData[0]['Jenis_kelamin']}",
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      const Text("Selamat Datang...",
+                          style: TextStyle(fontSize: 18, color: Colors.grey)),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('${c.userData[0]['Nama']}',
+                              style: const TextStyle(
+                                  fontSize: 26, fontWeight: FontWeight.bold)),
+                          Text("${c.userData[0]['Jenis_kelamin']}",
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("${c.userData[0]['Alamat']}",
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                          Text("${c.userData[0]['Tanggal_lahir']}",
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
                     ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("${controller.userData[0]['Alamat']}",
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                      Text("${controller.userData[0]['Tanggal_lahir']}",
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ],
+                  );
+                },
               ),
             ),
             const SizedBox(height: 20),
@@ -81,6 +93,7 @@ class HomeView extends GetView<HomeController> {
                   if (snap.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   }
+
 
                   if (snap.data?.length == 0) {
                     return const Center(

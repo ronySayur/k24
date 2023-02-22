@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../data/member.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
+  @override
+  void onInit() {
+    box.remove('id');
+    super.onInit();
+  }
+
+  GetStorage box = GetStorage();
   TextEditingController Username = TextEditingController();
   TextEditingController Password = TextEditingController();
   DatabaseManager database = DatabaseManager.instance;
 
   login() async {
-    EasyLoading.show(status: 'Tunggu Sebentar');
     if (Username.text.isEmpty || Password.text.isEmpty) {
       Get.snackbar("Error", "Username atau Password tidak boleh kosong",
           snackPosition: SnackPosition.BOTTOM,
@@ -30,15 +37,11 @@ class LoginController extends GetxController {
           if (Username.text == list[i]['Username'] &&
               Password.text == list[i]['Password']) {
             EasyLoading.show(
-              status: 'Tunggu Sebentar',
-              maskType: EasyLoadingMaskType.black,
-              dismissOnTap: false,
-            );
+                status: 'Tunggu Sebentar', maskType: EasyLoadingMaskType.black);
 
+            await box.write('id', "${list[i]['id']}");
             Get.offAllNamed(Routes.HOME, arguments: "${list[i]['id']}");
-
-            await Future.delayed(const Duration(seconds: 1))
-                .then((value) => EasyLoading.dismiss());
+            EasyLoading.dismiss();
 
             Get.snackbar("Success", "Login Berhasil",
                 snackPosition: SnackPosition.TOP,
@@ -61,6 +64,5 @@ class LoginController extends GetxController {
             backgroundColor: Colors.red);
       }
     }
-    EasyLoading.dismiss();
   }
 }
