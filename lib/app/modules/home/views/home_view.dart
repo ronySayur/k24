@@ -1,10 +1,8 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../controllers/page_index_controller_controller.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -13,11 +11,10 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    
-    print(id);
+    controller.idUser.value = id;
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
             const SizedBox(height: 20),
@@ -35,20 +32,32 @@ class HomeView extends GetView<HomeController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Total Member",
+                  const Text("Selamat Datang...",
                       style: TextStyle(fontSize: 18, color: Colors.grey)),
                   const SizedBox(height: 10),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text("100",
-                  //         style: TextStyle(
-                  //             fontSize: 26, fontWeight: FontWeight.bold)),
-                  //     const Text("Member",
-                  //         style: TextStyle(
-                  //             fontSize: 18, fontWeight: FontWeight.bold)),
-                  //   ],
-                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("${controller.userData[0]['Nama']}",
+                          style: const TextStyle(
+                              fontSize: 26, fontWeight: FontWeight.bold)),
+                      Text("${controller.userData[0]['Jenis_kelamin']}",
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("${controller.userData[0]['Alamat']}",
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      Text("${controller.userData[0]['Tanggal_lahir']}",
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -99,7 +108,7 @@ class HomeView extends GetView<HomeController> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("${snap.data!.length}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 26,
                                         fontWeight: FontWeight.bold)),
                                 const Text("Member",

@@ -31,9 +31,20 @@ class LoginController extends GetxController {
               Password.text == list[i]['Password']) {
             EasyLoading.show(
               status: 'Tunggu Sebentar',
+              maskType: EasyLoadingMaskType.black,
+              dismissOnTap: false,
             );
 
             Get.offAllNamed(Routes.HOME, arguments: "${list[i]['id']}");
+
+            await Future.delayed(const Duration(seconds: 1))
+                .then((value) => EasyLoading.dismiss());
+
+            Get.snackbar("Success", "Login Berhasil",
+                snackPosition: SnackPosition.TOP,
+                icon: const Icon(Icons.check),
+                colorText: Colors.white,
+                backgroundColor: Colors.green);
           } else {
             Get.snackbar("Error", "Username atau Password salah",
                 snackPosition: SnackPosition.BOTTOM,
