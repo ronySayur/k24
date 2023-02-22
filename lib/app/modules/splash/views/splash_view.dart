@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/splash_controller.dart';
 
@@ -9,14 +10,11 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
       body: Center(
-        child: Text(
-          'SplashView is working',
-          style: TextStyle(fontSize: 20),
+        child: Container(
+          width: Get.context!.width * 0.7,
+          height: Get.context!.width * 0.7,
+          child: Lottie.asset("assets/lottie/phamarcisthand.json"),
         ),
       ),
     );
