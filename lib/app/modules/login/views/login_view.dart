@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  GetStorage box = GetStorage();
+  LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class LoginView extends GetView<LoginController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  const Text(
+                  Text(
                     "JobTest ",
                     style: TextStyle(
                         color: Colors.green,
@@ -126,6 +129,22 @@ class LoginView extends GetView<LoginController> {
                         child: const Text("Masuk"),
                       ),
                     ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text("Login sebagai admin?"),
+                        TextButton(
+                            onPressed: () async {
+                              await box.write("id", "admin");
+                              Get.offAllNamed(Routes.HOME, arguments: "admin");
+                            },
+                            child: const Text("Login disini",
+                                style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold)))
+                      ],
+                    )
                   ],
                 ),
               ),

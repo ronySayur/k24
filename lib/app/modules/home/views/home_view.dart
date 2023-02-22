@@ -13,6 +13,9 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    if (id =="admin") {
+      controller.role.value = "admin";
+    }
     controller.getUser(id);
     return Scaffold(
       body: Padding(
@@ -38,38 +41,48 @@ class HomeView extends GetView<HomeController> {
                   if (c.userData == null) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("Selamat Datang...",
-                          style: TextStyle(fontSize: 18, color: Colors.grey)),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('${c.userData[0]['Nama']}',
-                              style: const TextStyle(
-                                  fontSize: 26, fontWeight: FontWeight.bold)),
-                          Text("${c.userData[0]['Jenis_kelamin']}",
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("${c.userData[0]['Alamat']}",
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          Text("${c.userData[0]['Tanggal_lahir']}",
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ],
-                  );
+                  if (c.role.value == "admin") {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Selamat Datang $id",
+                            style: TextStyle(fontSize: 18, color: Colors.black,
+                            fontWeight: FontWeight.bold)),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Selamat Datang...",
+                            style: TextStyle(fontSize: 18, color: Colors.grey)),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('${c.userData[0]['Nama']}',
+                                style: const TextStyle(
+                                    fontSize: 26, fontWeight: FontWeight.bold)),
+                            Text("${c.userData[0]['Jenis_kelamin']}",
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("${c.userData[0]['Alamat']}",
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                            Text("${c.userData[0]['Tanggal_lahir']}",
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ],
+                    );
+                  }
                 },
               ),
             ),
@@ -93,7 +106,6 @@ class HomeView extends GetView<HomeController> {
                   if (snap.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   }
-
 
                   if (snap.data?.length == 0) {
                     return const Center(
@@ -166,7 +178,6 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: Colors.green,
         items: const [
           TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.add, title: 'Add'),
           TabItem(icon: Icons.people, title: 'Profile'),
         ],
         initialActiveIndex: pageC.pageIndex.value,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../data/member.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
+  var role="".obs;
   var multiple = true.obs;
    var userData;
   DatabaseManager database = DatabaseManager.instance;
@@ -13,6 +13,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   Future<List<Map<String, dynamic>>> getMember() async {
     Database? db = await database.db;
     List<Map<String, dynamic>> maps = await db.query('member');
+    update();
     return maps;
   }
 

@@ -41,7 +41,7 @@ class AppPages {
     GetPage(
       transition: Transition.fadeIn,
       name: _Paths.LOGIN,
-      page: () => const LoginView(),
+      page: () =>  LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(

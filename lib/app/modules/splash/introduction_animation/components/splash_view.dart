@@ -45,7 +45,7 @@ class _SplashViewState extends State<SplashView> {
             const Padding(
               padding: EdgeInsets.only(left: 64, right: 64),
               child: Text(
-                "Halo, bagaimana kabar? Saya senang dapat berbincang dengan Anda mengenai bagaimana pengalaman Anda menggunakan produk/sistem kami.",
+                "Aplikasi ini bertujuan untuk memudahkan saya dalam mencari nafkah",
                 textAlign: TextAlign.center,
               ),
             ),

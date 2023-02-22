@@ -36,61 +36,78 @@ class ProfileView extends GetView<ProfileController> {
                 if (c.userData == null) {
                   return const Center(child: CircularProgressIndicator());
                 }
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Profil Anda",
-                        style: TextStyle(fontSize: 18, color: Colors.grey)),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('${c.userData[0]['Nama']}',
-                            style: const TextStyle(
-                                fontSize: 26, fontWeight: FontWeight.bold)),
-                        Text("${c.userData[0]['Jenis_kelamin']}",
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("${c.userData[0]['Alamat']}",
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                        Text("${c.userData[0]['Tanggal_lahir']}",
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ],
-                );
+                if (c.role.value == "admin") {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Selamat Datang ${c.role.value}...",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                    ],
+                  );
+                } else {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Selamat Datang...",
+                          style: TextStyle(fontSize: 18, color: Colors.grey)),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('${c.userData[0]['Nama']}',
+                              style: const TextStyle(
+                                  fontSize: 26, fontWeight: FontWeight.bold)),
+                          Text("${c.userData[0]['Jenis_kelamin']}",
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("${c.userData[0]['Alamat']}",
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                          Text("${c.userData[0]['Tanggal_lahir']}",
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ],
+                  );
+                }
               },
             ),
           ),
 
           const SizedBox(height: 10),
-          
-          ListTile(
-              onTap: () {},
-              leading: const Icon(Icons.manage_accounts,
-                  color: Colors.black, size: 30),
-              title: const Text("Ubah Profile", style: TextStyle(fontSize: 20)),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  color: Colors.black, size: 20)),
-          const SizedBox(height: 10),
-          ListTile(
-              onTap: () {
-                Get.toNamed(Routes.CHANGEPASSWORDMEMBER);
-              },
-              leading: const Icon(Icons.lock, color: Colors.black, size: 30),
-              title:
-                  const Text("Ubah Password", style: TextStyle(fontSize: 20)),
-              trailing: const Icon(Icons.arrow_forward_ios,
-                  color: Colors.black, size: 20)),
+          GetBuilder<HomeController>(
+            init: HomeController(),
+            initState: (_) {},
+            builder: (c) {
+              if (c.userData == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (c.role.value == "admin") {
+                return const SizedBox();
+              } else {
+                return ListTile(
+                    onTap: () {
+                      Get.toNamed(Routes.CHANGEPASSWORDMEMBER);
+                    },
+                    leading:
+                        const Icon(Icons.lock, color: Colors.black, size: 30),
+                    title: const Text("Ubah Password",
+                        style: TextStyle(fontSize: 20)),
+                    trailing: const Icon(Icons.arrow_forward_ios,
+                        color: Colors.black, size: 20));
+              }
+            },
+          ),
 
           const SizedBox(height: 10),
           const Divider(),
@@ -110,7 +127,6 @@ class ProfileView extends GetView<ProfileController> {
         backgroundColor: Colors.green,
         items: const [
           TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.add, title: 'Add'),
           TabItem(icon: Icons.people, title: 'Profile'),
         ],
         initialActiveIndex: pageC.pageIndex.value,

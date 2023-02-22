@@ -1,13 +1,15 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../../routes/app_pages.dart';
 
 class CenterNextButton extends StatelessWidget {
+  GetStorage box = GetStorage();
   final AnimationController animationController;
   final VoidCallback onNextClick;
-  const CenterNextButton(
+  CenterNextButton(
       {Key? key, required this.animationController, required this.onNextClick})
       : super(key: key);
 
@@ -142,8 +144,9 @@ class CenterNextButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.HOME, arguments: "admin");
+                    onPressed: () async {
+                      await box.write("id", "admin");
+                      Get.offAllNamed(Routes.HOME, arguments: "admin");
                     },
                     child: const Text('Login untuk admin? ',
                         style: TextStyle(
@@ -153,8 +156,10 @@ class CenterNextButton extends StatelessWidget {
                         )),
                   ),
                   TextButton(
-                    onPressed: () =>
-                        Get.toNamed(Routes.HOME, arguments: "admin"),
+                    onPressed: () async {
+                      await box.write("id", "admin");
+                      Get.offAllNamed(Routes.HOME, arguments: "admin");
+                    },
                     child: const Text(
                       'Login',
                       style: TextStyle(

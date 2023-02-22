@@ -13,14 +13,7 @@ Future<void> main() async {
   await GetStorage.init();
   Get.put(PageIndexController(), permanent: true);
   Get.put(AuthController(), permanent: true);
-  runApp(
-    GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "K24 Test",
-        builder: EasyLoading.init(),
-        getPages: AppPages.routes,
-        initialRoute: Routes.LOGIN),
-  );
+  runApp(myapp());
 }
 
 class myapp extends StatelessWidget {
