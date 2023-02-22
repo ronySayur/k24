@@ -29,14 +29,14 @@ class LoginView extends GetView<LoginController> {
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const Text(
-                    "Job-Test ",
+                    "JobTest ",
                     style: TextStyle(
-                        color: Colors.red,
+                        color: Colors.green,
                         fontWeight: FontWeight.bold,
                         fontSize: 26 * 2.5),
                   ),
                   const Text(
-                    "Aida Putra",
+                    "K-24",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class LoginView extends GetView<LoginController> {
                   children: [
                     const Text("Selamat Datang",
                         style: TextStyle(
-                            color: Colors.red,
+                            color: Colors.green,
                             fontWeight: FontWeight.bold,
                             fontSize: 26 * 1.25)),
                     const Text(
@@ -76,7 +76,7 @@ class LoginView extends GetView<LoginController> {
                             const TextStyle(color: Colors.black, fontSize: 16),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
-                            borderSide: const BorderSide(color: Colors.red)),
+                            borderSide: const BorderSide(color: Colors.green)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -103,7 +103,7 @@ class LoginView extends GetView<LoginController> {
                             const TextStyle(color: Colors.black, fontSize: 16),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
-                            borderSide: const BorderSide(color: Colors.red)),
+                            borderSide: const BorderSide(color: Colors.green)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -121,7 +121,7 @@ class LoginView extends GetView<LoginController> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
+                            primary: Colors.green,
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 30),
                             textStyle: const TextStyle(

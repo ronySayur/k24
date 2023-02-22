@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:k24/app/routes/app_pages.dart';
 
 import 'components/care_view.dart';
 import 'components/center_next_button.dart';
@@ -114,6 +115,6 @@ class _IntroductionAnimationScreenState
   }
 
   void _signUpClick() {
-    Navigator.pop(context);
+    Get.toNamed(Routes.LOGIN);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:k24/app/modules/splash/introduction_animation/introduction_animation_screen.dart';
 
 import '../modules/changepasswordmember/bindings/changepasswordmember_binding.dart';
 import '../modules/changepasswordmember/views/changepasswordmember_view.dart';
@@ -28,6 +29,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () => HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      transition: Transition.fadeIn,
+      name: _Paths.INTRO,
+      page: () => IntroductionAnimationScreen(),
     ),
     GetPage(
       transition: Transition.fadeIn,
