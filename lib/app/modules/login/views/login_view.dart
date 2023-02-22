@@ -6,8 +6,10 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       // ignore: prefer_const_constructors
       decoration: BoxDecoration(
@@ -89,13 +91,11 @@ class LoginView extends GetView<LoginController> {
                       controller: controller.Password,
                       cursorColor: Colors.black,
                       textInputAction: TextInputAction.done,
-                      maxLength: 6,
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: "Pin",
+                        labelText: "Password",
                         counterText: "",
                         labelStyle:
                             const TextStyle(color: Colors.black, fontSize: 16),
@@ -117,7 +117,7 @@ class LoginView extends GetView<LoginController> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50)),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => controller.login(),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                             padding: const EdgeInsets.symmetric(

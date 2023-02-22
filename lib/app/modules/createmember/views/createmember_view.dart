@@ -1,4 +1,3 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -13,17 +12,6 @@ class CreatememberView extends GetView<CreatememberController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: ConvexAppBar(
-          style: TabStyle.reactCircle,
-          backgroundColor: Colors.green,
-          items: const [
-            TabItem(icon: Icons.home, title: 'Home'),
-            TabItem(icon: Icons.add, title: 'Add'),
-            TabItem(icon: Icons.people, title: 'Profile'),
-          ],
-          initialActiveIndex: pageC.pageIndex.value,
-          onTap: (int i) => pageC.changePage(i),
-        ),
         appBar: AppBar(
           leading: IconButton(
               onPressed: () => Get.back(),
@@ -166,7 +154,7 @@ class CreatememberView extends GetView<CreatememberController> {
                       ),
                     ),
                     onPressed: () {
-                      EasyLoading.show(status: 'loading...');
+                      EasyLoading.show(status: 'Tunggu Sebentar');
                       controller.createMember();
                       EasyLoading.dismiss();
                     },

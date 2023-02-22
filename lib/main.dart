@@ -19,7 +19,7 @@ Future<void> main() async {
         title: "K24 Test",
         builder: EasyLoading.init(),
         getPages: AppPages.routes,
-        initialRoute: Routes.HOME),
+        initialRoute: Routes.LOGIN),
   );
 }
 

@@ -9,9 +9,12 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   final pageC = Get.find<PageIndexController>();
+  final String id = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    
+    print(id);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10),

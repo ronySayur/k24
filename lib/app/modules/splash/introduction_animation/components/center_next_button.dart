@@ -153,7 +153,8 @@ class CenterNextButton extends StatelessWidget {
                         )),
                   ),
                   TextButton(
-                    onPressed: () => Get.toNamed(Routes.HOME, arguments: "user"),
+                    onPressed: () =>
+                        Get.toNamed(Routes.HOME, arguments: "admin"),
                     child: const Text(
                       'Login',
                       style: TextStyle(
