@@ -1,12 +1,10 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import 'package:get/get.dart';
 
 import '../../../controllers/page_index_controller_controller.dart';
 import '../controllers/createmember_controller.dart';
-import 'package:intl/intl.dart';
 
 class CreatememberView extends GetView<CreatememberController> {
   final pageC = Get.find<PageIndexController>();
@@ -105,8 +103,6 @@ class CreatememberView extends GetView<CreatememberController> {
                     readOnly: true,
                     controller: controller.Tanggal_lahir,
                     onTap: () => controller.chooseDate(),
-                    onEditingComplete: () {},
-                    textInputAction: TextInputAction.done,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                         labelText: "Tanggal Lahir",

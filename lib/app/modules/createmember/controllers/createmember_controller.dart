@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -35,18 +34,18 @@ class CreatememberController extends GetxController {
 
   chooseDate() async {
     DateTime? pickedDate = await showDatePicker(
-        context: Get.context!,
-        initialDate: selectedDate.value,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2024),
-        helpText: 'Pilih Tanggal Lahir',
-        cancelText: 'Tutup',
-        confirmText: 'Konfirmasi',
-        errorFormatText: 'Masukkan format yang benar',
-        errorInvalidText: 'Masukkan tanggal yang benar',
-        fieldLabelText: 'Tanggal Lahir',
-        fieldHintText: 'Bulan/Hari/Tahun',
-        selectableDayPredicate: disableDate);
+      context: Get.context!,
+      initialDate: selectedDate.value,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      helpText: 'Pilih Tanggal Lahir',
+      cancelText: 'Tutup',
+      confirmText: 'Konfirmasi',
+      errorFormatText: 'Masukkan format yang benar',
+      errorInvalidText: 'Masukkan tanggal yang benar',
+      fieldLabelText: 'Tanggal Lahir',
+      fieldHintText: 'Bulan/Hari/Tahun'
+    );
     if (pickedDate != null && pickedDate != selectedDate.value) {
       selectedDate.value = pickedDate;
       Tanggal_lahir.text = DateFormat('dd-MM-yyyy').format(selectedDate.value);

@@ -14,7 +14,12 @@ Future<void> main() async {
   Get.put(PageIndexController(), permanent: true);
   Get.put(AuthController(), permanent: true);
   runApp(
-    myapp(),
+    GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "K24 Test",
+        builder: EasyLoading.init(),
+        getPages: AppPages.routes,
+        initialRoute: Routes.HOME),
   );
 }
 
@@ -37,10 +42,10 @@ class myapp extends StatelessWidget {
                     auth.isSkipIntro.isTrue ? Routes.HOME : Routes.INTRO,
               ));
         }
-              return FutureBuilder(
-                future: auth.firstInitialized(),
-                builder: (context, snapshot) => const SplashScreen(),
-              );
+        return FutureBuilder(
+          future: auth.firstInitialized(),
+          builder: (context, snapshot) => const SplashScreen(),
+        );
       },
     );
   }
