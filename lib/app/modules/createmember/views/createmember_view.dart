@@ -42,7 +42,7 @@ class CreatememberView extends GetView<CreatememberController> {
                 const SizedBox(height: 10),
                 TextField(
                     textInputAction: TextInputAction.next,
-                    controller: controller.Nama,
+                    controller: controller.nama,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                         labelText: "Nama",
@@ -56,7 +56,7 @@ class CreatememberView extends GetView<CreatememberController> {
                             horizontal: 30, vertical: 15))),
                 const SizedBox(height: 20),
                 TextField(
-                    controller: controller.Alamat,
+                    controller: controller.alamat,
                     textInputAction: TextInputAction.done,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
@@ -72,9 +72,9 @@ class CreatememberView extends GetView<CreatememberController> {
                 const SizedBox(height: 20),
                 DropdownMenu(
                     label: const Text("Jenis Kelamin"),
-                    controller: controller.Jenis_kelamin,
+                    controller: controller.jenisKelamin,
                     onSelected: (value) =>
-                        controller.Jenis_kelamin.text = value.toString(),
+                        controller.jenisKelamin.text = value.toString(),
                     // ignore: prefer_const_literals_to_create_immutables
                     dropdownMenuEntries: [
                       const DropdownMenuEntry(
@@ -91,7 +91,7 @@ class CreatememberView extends GetView<CreatememberController> {
                 const SizedBox(height: 20),
                 TextField(
                     readOnly: true,
-                    controller: controller.Tanggal_lahir,
+                    controller: controller.tanggalLahir,
                     onTap: () => controller.chooseDate(),
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
@@ -109,7 +109,7 @@ class CreatememberView extends GetView<CreatememberController> {
                 TextField(
                     textInputAction: TextInputAction.next,
                     maxLength: 15,
-                    controller: controller.Username,
+                    controller: controller.username,
                     enableSuggestions: false,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
@@ -128,7 +128,7 @@ class CreatememberView extends GetView<CreatememberController> {
                     textInputAction: TextInputAction.next,
                     maxLength: 20,
                     autocorrect: false,
-                    controller: controller.Password,
+                    controller: controller.password,
                     cursorColor: Colors.black,
                     enableSuggestions: false,
                     obscureText: true,

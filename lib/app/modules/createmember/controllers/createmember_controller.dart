@@ -7,32 +7,52 @@ import 'package:sqflite/sqflite.dart';
 
 class CreatememberController extends GetxController {
   var selectedDate = DateTime.now().obs;
-  TextEditingController Nama = TextEditingController();
-  TextEditingController Alamat = TextEditingController();
-  TextEditingController Jenis_kelamin = TextEditingController();
-  TextEditingController Tanggal_lahir = TextEditingController();
-  TextEditingController Username = TextEditingController();
-  TextEditingController Password = TextEditingController();
+  TextEditingController nama = TextEditingController();
+  TextEditingController alamat = TextEditingController();
+  TextEditingController jenisKelamin = TextEditingController();
+  TextEditingController tanggalLahir = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   DatabaseManager database = DatabaseManager.instance;
 
   Future<void> createMember() async {
-    Database db = await database.db;
-    db.insert("member", {
-      "Nama": Nama.text,
-      "Tanggal_lahir": Tanggal_lahir.text,
-      "Alamat": Alamat.text,
-      "Jenis_kelamin": Jenis_kelamin.text,
-      "Username": Username.text,
-      "Password": Password.text
-    });
+    if (nama.text.isEmpty ||
+        alamat.text.isEmpty ||
+        jenisKelamin.text.isEmpty ||
+        tanggalLahir.text.isEmpty ||
+        username.text.isEmpty ||
+        password.text.isEmpty) {
+      Get.snackbar("Error", "Semua Field Harus Diisi",
+          snackPosition: SnackPosition.TOP,
+          icon: const Icon(Icons.error),
+          colorText: Colors.white,
+          backgroundColor: Colors.red);
+    } else {
+      Database db = await database.db;
+      db.insert("member", {
+        "Nama": nama.text,
+        "Tanggal_lahir": tanggalLahir.text,
+        "Alamat": alamat.text,
+        "Jenis_kelamin": jenisKelamin.text,
+        "Username": username.text,
+        "Password": password.text
+      });
 
-    Get.back();
-    Get.snackbar("Success", "Member Berhasil Ditambahkan",
-        snackPosition: SnackPosition.TOP,
-        icon: const Icon(Icons.check),
-        colorText: Colors.white,
-        backgroundColor: Colors.green);
+      Get.back();
+      Get.snackbar("Success", "Member Berhasil Ditambahkan",
+          snackPosition: SnackPosition.TOP,
+          icon: const Icon(Icons.check),
+          colorText: Colors.white,
+          backgroundColor: Colors.green);
+    }
+
+    EasyLoading.show(
+        status: 'Loading...',
+        maskType: EasyLoadingMaskType.black,
+        dismissOnTap: true);
+    await Future.delayed(const Duration(seconds: 2));
+    EasyLoading.dismiss();
   }
 
   chooseDate() async {
@@ -50,7 +70,7 @@ class CreatememberController extends GetxController {
         fieldHintText: 'Bulan/Hari/Tahun');
     if (pickedDate != null && pickedDate != selectedDate.value) {
       selectedDate.value = pickedDate;
-      Tanggal_lahir.text = DateFormat('dd-MM-yyyy').format(selectedDate.value);
+      tanggalLahir.text = DateFormat('dd-MM-yyyy').format(selectedDate.value);
     }
   }
 
