@@ -28,34 +28,26 @@ class LoginController extends GetxController {
           backgroundColor: Colors.red);
     } else {
       Database db = await database.db;
-      var list =
-          await db.query('member', columns: ['id', 'Username', 'Password']);
-      print(list);
+      var login = await db.query('member',
+          columns: ['id', 'Username', 'Password'],
+          where: 'Username=? and Password=?',
+          whereArgs: [Username.text, Password.text]);
 
-      if (list.isNotEmpty) {
-        for (var i = 0; i < list.length; i++) {
-          if (Username.text == list[i]['Username'] &&
-              Password.text == list[i]['Password']) {
-            EasyLoading.show(
-                status: 'Tunggu Sebentar', maskType: EasyLoadingMaskType.black);
+      print(login);
 
-            await box.write('id', "${list[i]['id']}");
-            Get.offAllNamed(Routes.HOME, arguments: "${list[i]['id']}");
-            EasyLoading.dismiss();
+      if (login.isNotEmpty) {
+        EasyLoading.show(
+            status: 'Tunggu Sebentar', maskType: EasyLoadingMaskType.black);
 
-            Get.snackbar("Success", "Login Berhasil",
-                snackPosition: SnackPosition.TOP,
-                icon: const Icon(Icons.check),
-                colorText: Colors.white,
-                backgroundColor: Colors.green);
-          } else {
-            Get.snackbar("Error", "Username atau Password salah",
-                snackPosition: SnackPosition.BOTTOM,
-                icon: const Icon(Icons.error),
-                colorText: Colors.white,
-                backgroundColor: Colors.red);
-          }
-        }
+        await box.write('id', "${login[0]['id']}");
+        Get.offAllNamed(Routes.HOME, arguments: "${login[0]['id']}");
+        EasyLoading.dismiss();
+
+        Get.snackbar("Success", "Login Berhasil",
+            snackPosition: SnackPosition.TOP,
+            icon: const Icon(Icons.check),
+            colorText: Colors.white,
+            backgroundColor: Colors.green);
       } else {
         Get.snackbar("Error", "Username tidak terdaftar",
             snackPosition: SnackPosition.BOTTOM,

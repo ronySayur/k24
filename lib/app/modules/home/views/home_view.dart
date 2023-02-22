@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../controllers/page_index_controller_controller.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -13,7 +14,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    if (id =="admin") {
+    if (id == "admin") {
       controller.role.value = "admin";
     }
     controller.getUser(id);
@@ -46,8 +47,10 @@ class HomeView extends GetView<HomeController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Selamat Datang $id",
-                            style: TextStyle(fontSize: 18, color: Colors.black,
-                            fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
                       ],
                     );
                   } else {
@@ -186,7 +189,7 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         splashColor: Colors.white,
-        onPressed: () => Get.toNamed('/createmember'),
+        onPressed: () => Get.toNamed(Routes.CREATEMEMBER),
         child: const Icon(Icons.add, color: Colors.white, size: 30),
       ),
     );

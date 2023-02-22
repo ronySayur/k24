@@ -19,9 +19,7 @@ class CreatememberView extends GetView<CreatememberController> {
           actions: [
             IconButton(
               onPressed: () {
-                EasyLoading.show(status: 'Tunggu Sebentar');
                 controller.createMember();
-                EasyLoading.dismiss();
               },
               icon: const Icon(Icons.save, color: Colors.white),
             )

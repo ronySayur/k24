@@ -27,25 +27,27 @@ class CreatememberController extends GetxController {
       "Password": Password.text
     });
 
-    EasyLoading.showSuccess('Berhasil menambahkan member!');
-    var data = await db.query("member");
-    print(data);
+    Get.back();
+    Get.snackbar("Success", "Member Berhasil Ditambahkan",
+        snackPosition: SnackPosition.TOP,
+        icon: const Icon(Icons.check),
+        colorText: Colors.white,
+        backgroundColor: Colors.green);
   }
 
   chooseDate() async {
     DateTime? pickedDate = await showDatePicker(
-      context: Get.context!,
-      initialDate: selectedDate.value,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-      helpText: 'Pilih Tanggal Lahir',
-      cancelText: 'Tutup',
-      confirmText: 'Konfirmasi',
-      errorFormatText: 'Masukkan format yang benar',
-      errorInvalidText: 'Masukkan tanggal yang benar',
-      fieldLabelText: 'Tanggal Lahir',
-      fieldHintText: 'Bulan/Hari/Tahun'
-    );
+        context: Get.context!,
+        initialDate: selectedDate.value,
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now(),
+        helpText: 'Pilih Tanggal Lahir',
+        cancelText: 'Tutup',
+        confirmText: 'Konfirmasi',
+        errorFormatText: 'Masukkan format yang benar',
+        errorInvalidText: 'Masukkan tanggal yang benar',
+        fieldLabelText: 'Tanggal Lahir',
+        fieldHintText: 'Bulan/Hari/Tahun');
     if (pickedDate != null && pickedDate != selectedDate.value) {
       selectedDate.value = pickedDate;
       Tanggal_lahir.text = DateFormat('dd-MM-yyyy').format(selectedDate.value);
